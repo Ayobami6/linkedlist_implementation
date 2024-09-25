@@ -53,6 +53,18 @@ func (l *LinkedList) InsertAtTheStart(value int) {
 	l.count++
 }
 
+func (l *LinkedList) LookUp(value int) int {
+	node := l.head
+	var val int
+	for node != nil {
+		if node.getVal() == value {
+			val = node.getVal()
+		}
+		node = node.getNext()
+	}
+	return val
+}
+
 func (l *LinkedList) InsertAtTheEnd(value int) {
 	node := l.head
 	newNode := NewNode(value)

@@ -17,5 +17,6 @@ func main() {
 	list.InsertAtTheEnd(3)
 	fmt.Println(list.GetCount())
 	list.DumpList()
+	fmt.Println(list.LookUp(9))
 
 }
