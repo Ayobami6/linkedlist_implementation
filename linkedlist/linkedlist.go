@@ -56,16 +56,20 @@ func (l *LinkedList) InsertAtTheStart(value int) {
 	l.count++
 }
 
-func (l *LinkedList) LookUp(value int) int {
+func (l *LinkedList) LookUp(value int) any {
 	node := l.head
+	if node == nil {
+		return nil
+	}
 	var val int
 	for node != nil {
 		if node.GetVal() == value {
 			val = node.GetVal()
+			return val
 		}
 		node = node.GetNext()
 	}
-	return val
+	return nil
 }
 
 func (l *LinkedList) InsertAtTheEnd(value int) {
