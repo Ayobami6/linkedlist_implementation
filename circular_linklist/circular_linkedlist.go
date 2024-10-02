@@ -89,6 +89,56 @@ func (c *CircularLinkedList) DeleteHead() error {
 	next := c.head.GetNext()
 	c.head = next
 	c.tail.SetNext(next)
+	c.count--
 
 	return nil
+}
+
+func (c *CircularLinkedList) DeleteTail() error {
+	current := c.head
+	prev := c.head
+
+	if current == nil {
+		return errors.New("linkedlist is empty")
+	}
+	if c.count < 2 {
+		c.DeleteHead()
+		return nil
+	}
+
+	// traverse the linkedlist
+	for current != nil {
+		prev = current
+		current = current.GetNext()
+	}
+	prev.SetNext(c.head)
+	c.tail.SetNext(prev)
+	c.head = prev
+	c.count--
+	return nil
+
+}
+
+func (c *CircularLinkedList) DeleteANode(position int) error {
+	current := c.head
+	count := 1
+	prev := current
+	if c.count < position {
+		return errors.New("position out of range")
+	}
+
+	for current != nil {
+		if count == position {
+			tmp := current.GetNext()
+			prev.SetNext(tmp)
+			c.head = prev
+			c.count--
+			return nil
+		}
+		prev = current
+		count++
+		current = current.GetNext()
+	}
+	return nil
+
 }
