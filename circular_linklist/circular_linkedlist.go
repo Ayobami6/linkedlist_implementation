@@ -107,13 +107,12 @@ func (c *CircularLinkedList) DeleteTail() error {
 	}
 
 	// traverse the linkedlist
-	for current != nil {
+	for current != c.head {
 		prev = current
 		current = current.GetNext()
 	}
 	prev.SetNext(c.head)
-	c.tail.SetNext(prev)
-	c.head = prev
+	c.tail = prev
 	c.count--
 	return nil
 
