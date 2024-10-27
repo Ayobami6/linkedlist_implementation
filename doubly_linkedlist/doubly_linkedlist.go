@@ -107,13 +107,20 @@ func (d *DoublyLinkedList) DeleteTail() error {
 		return errors.New("linkedlist is empty")
 
 	}
-	prev := d.head
-	current := d.head
-	for current != nil {
-		prev = current
-		current = current.next
+	if d.head == d.tail {
+		d.head = nil
+		d.tail = nil
+	} else {
+
+		prev := d.head
+		current := d.head
+		for current != nil {
+			prev = current
+			current = current.next
+		}
+		prev.next = nil
+		d.tail = prev
 	}
-	d.head = prev
 	d.count--
 	return nil
 
