@@ -64,9 +64,11 @@ func (d *DoublyLinkedList) InsertAtTheEnd(data interface{}) {
 	if d.tail == nil {
 		d.head = newNode
 		d.tail = newNode
+		d.count++
 	} else {
 		newNode.prev = d.tail
 		d.tail.next = newNode
 		d.tail = newNode
+		d.count++
 	}
 }
