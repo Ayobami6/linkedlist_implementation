@@ -64,4 +64,34 @@ func TestDoublyLinkedList(t *testing.T) {
 
 	})
 
+	// test lookup
+	t.Run("Test lookup", func(t *testing.T) {
+		dll := NewDoublyLinkedList()
+		dll.InsertAtTheStart(2)
+		dll.InsertAtTheStart(4)
+		dll.InsertAtTheStart(5)
+		data, err := dll.LookUp(4)
+		assert.Equal(t, data, 4)
+		assert.Nil(t, err)
+	})
+
+	t.Run("Test lookup not found", func(t *testing.T) {
+		dll := NewDoublyLinkedList()
+		dll.InsertAtTheStart(2)
+		dll.InsertAtTheStart(4)
+		dll.InsertAtTheStart(5)
+		data, err := dll.LookUp(1)
+		assert.Nil(t, data)
+		assert.Contains(t, err.Error(), "data not found!")
+
+	})
+
+	// test dll empty
+	t.Run("Test dll empty", func(t *testing.T) {
+		dll := NewDoublyLinkedList()
+		data, err := dll.LookUp(3)
+		assert.Nil(t, data)
+		assert.Contains(t, err.Error(), "linkedlist is empty")
+	})
+
 }

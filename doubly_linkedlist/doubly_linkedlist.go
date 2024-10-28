@@ -139,6 +139,21 @@ func (d *DoublyLinkedList) DeleteHead() error {
 
 }
 
+func (d *DoublyLinkedList) LookUp(data interface{}) (interface{}, error) {
+	if d.head == nil {
+		return nil, errors.New("linkedlist is empty")
+	}
+	head := d.head
+	for head != nil {
+		if head.data == data {
+			return head.data, nil
+		}
+		head = head.GetNext()
+	}
+	return nil, errors.New("data not found!")
+
+}
+
 func (d *DoublyLinkedList) DumpList() {
 	head := d.head
 	for head != nil {
